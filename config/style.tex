@@ -1,0 +1,68 @@
+\ProvidesPackage{config/style2}
+
+%% Language and font encodings
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage[T1]{fontenc}
+
+
+
+\usepackage[a4paper, total={6in, 8.5in}]{geometry}
+\usepackage{graphicx}
+% \usepackage{gensymb}
+\usepackage{pdfpages}
+\graphicspath{{img/}{../img/}}
+\usepackage{subfiles}
+\usepackage{cite}
+\usepackage{listings} 
+\usepackage{siunitx}
+\usepackage{wrapfig}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{epstopdf}
+\usepackage{rotating}
+\usepackage{geometry}
+\usepackage[bottom]{footmisc}
+
+\usepackage{parskip}    % Gjør at man skipper linje isteden for linjeskift
+
+\bibliographystyle{IEEEtran}
+
+\lstset{basicstyle=\footnotesize}
+
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+\titleformat*{\paragraph}{\normalsize\bfseries}
+\titleformat*{\subparagraph}{\large\bfseries}
+
+\usepackage{caption}
+\captionsetup[figure]{labelfont=bf}
+\captionsetup[table]{labelfont=bf}
+
+\setlength{\intextsep}{0mm}
+\captionsetup{width=0.8\linewidth}
+
+\DeclareSIUnit\mM{\milli\textsc{m}}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black}
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+\setlength{\belowcaptionskip}{-10pt}
+\setlength\intextsep{10pt}
+
+\renewcommand{\baselinestretch}{1.5}
+
+%%Appendix
+\usepackage[titletoc, title]{appendix}
+\renewcommand{\appendixtocname}{Vedlegg}

@@ -1,0 +1,58 @@
+\documentclass[10pt]{article}
+
+\usepackage{config/style2}
+
+\newcommand{\mytitle}{Fagrapport: NRK}
+\newcommand{\myauthor}{
+\begin{center}
+    Ingeborg F. Brovoll \\
+    Arne T. A. Bui \\
+    Axel H. Grøvdal  \\
+    Thea S. Myhrvold  \\
+    Martin Stigen 
+\end{center}
+}
+
+\title{\mytitle}
+\author{\myauthor}
+\date{\today}
+
+%----- DOCUMENT -----%
+\begin{document}
+
+% Title page
+\input{title.tex}
+
+% Preface and abstract - edit corresponding file under content/ to change
+\input{content/0-preface.tex}
+
+\pagenumbering{Roman}
+\input{content/00-abstract.tex}
+
+% Generates table of contents, list of figures, list of tables
+\cleardoublepage % Clear floats
+\tableofcontents
+\cleardoublepage
+\listoffigures
+\vspace{1cm}
+
+% Main matter - edit corresponding file under content/ to change
+\input{content/01-introduction.tex}
+\input{content/03-Konsept-og-arkitektur.tex}
+% \input{content/0X-conclusion.tex}  %eksempel på div latex triks.
+
+% Bibliography - edit references.bib and use the \cite command in text
+\clearpage
+\renewcommand{\bibname}{References}
+\bibliographystyle{plain}
+\bibliography{references}
+
+% Appendices
+\appendix
+\addappheadtotoc
+\input{appendices/appendix.tex}
+
+% Example text to get started
+%\input{example.tex}
+
+\end{document}
