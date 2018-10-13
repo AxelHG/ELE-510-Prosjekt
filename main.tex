@@ -1,15 +1,11 @@
 \documentclass[10pt]{article}
 
-\usepackage{config/style2}
+\usepackage{config/style}
 
-\newcommand{\mytitle}{Fagrapport: NRK}
+\newcommand{\mytitle}{Object Detection with YOLOv3}
 \newcommand{\myauthor}{
 \begin{center}
-    Ingeborg F. Brovoll \\
-    Arne T. A. Bui \\
     Axel H. Grøvdal  \\
-    Thea S. Myhrvold  \\
-    Martin Stigen 
 \end{center}
 }
 
@@ -24,10 +20,9 @@
 \input{title.tex}
 
 % Preface and abstract - edit corresponding file under content/ to change
-\input{content/0-preface.tex}
 
 \pagenumbering{Roman}
-\input{content/00-abstract.tex}
+\input{content/0-summary.tex}
 
 % Generates table of contents, list of figures, list of tables
 \cleardoublepage % Clear floats
@@ -38,7 +33,10 @@
 
 % Main matter - edit corresponding file under content/ to change
 \input{content/01-introduction.tex}
-\input{content/03-Konsept-og-arkitektur.tex}
+\input{content/02-Theory.tex}
+\input{content/03-implementation.tex}
+\input{content/04-experiments_and_result.tex}
+
 % \input{content/0X-conclusion.tex}  %eksempel på div latex triks.
 
 % Bibliography - edit references.bib and use the \cite command in text
@@ -50,7 +48,7 @@
 % Appendices
 \appendix
 \addappheadtotoc
-\input{appendices/appendix.tex}
+\input{appendices/appendices.tex}
 
 % Example text to get started
 %\input{example.tex}
