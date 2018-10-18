@@ -1,5 +1,72 @@
 \newpage
 
 \section{Implementation of YOLO}
+To start using YOLO you first need hardware and software who support it. Since my computer does not have a GPU with CUDA cores, this implementation will only cover how to use YOLO with CPU rendering. 
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
+First of all, Darknet, the backbone of YOLO runs nativly in Linux, so that is what I used to implement YOLO. Since YOLO is open-source, other people have made ported version into windows, but this will not be covered.
+
+\subsection{Set up Darknet}
+
+Setting up Darknet is quite straight forward:
+\begin{itemize}  
+\item Clone git repo
+\item Run make inside of Darknet folder
+\item Test for errors by launching Darknet trough Terminal.  
+\end{itemize}
+
+\lstset{language=Python}
+\begin{lstlisting}[frame=single]  
+#Download and install Darknet
+git clone https://github.com/pjreddie/darknet.git
+cd darknet
+make
+
+#Test Darknet:
+./Darknet
+#Output should be:
+# "usage: ./darknet <function>"
+\end{lstlisting}
+
+
+\subsection{Get YOLO going}\label{getYOLOgoing}
+After downloading Darknet, it is necessary to download the weights and cfg files from web page "pjreddie.com/darknet/yolo/".
+
+Weights can be placed in Darknet rootfolder or in subfolder. Newer git repoes have the cfg files included in "darknet/cfg", otherwise place them also in the Darknet folder.
+
+Test to check if setting up weights went correctly:
+\begin{lstlisting}[frame=single]  
+#Open terminal in Darknet root folder
+./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg
+#Object detection will run. Time from 0.03 to 90 secounds.
+
+# End result will look like:
+'''
+data/dog.jpg: Predicted in 75.021245 seconds.
+dog: 99%
+truck: 93%
+bicycle: 99%
+'''
+\end{lstlisting}
+Note that this Prediction was done on an older laptop CPU, therefor the long processing time. 
+Prediction image is now in "darknet/predictions.png".
+
+\subsection{Darknet with Python}
+Since running a script make no practical use, is it important to be able to run this algorithm by yourself in your own program.
+
+Natively, this is written in C, so a program in C / C++ have the best efficiency rate. However is it neat to be able to use it in Python. In the repo who was cloned when installing Darknet, was there an almost finished Python example, and also a porting to be able to use the Darknet library, who is written in C. The "C to python" porting was to be found in "darknet/python/darknet.py".
+
+After some trail and error, the "darknet/examples/detector-scipy-opencv.py" was rewritten to work and can be seen in appendix A.
+
+After running the python example, the output will be a matrix in this form:
+ \[
+ {[ (Object Name_1,P(object_1), (BB_1(X), BB_1(Y),BB_1(width),BB_1(height)),(Object Name_2, ... )  )]}
+ \]
+ \newpage
+ Running the same test image as in the YOLO test, the output variable would be:
+\begin{lstlisting}[frame=single]  
+ { [
+ ('dog', 0.9878906607627869, (224.08419799804688, 380.34490966796875, 184.73121643066406, 305.8154602050781)), 
+ ('bicycle', 0.9838747382164001, (346.02569580078125, 282.224609375, 494.97515869140625, 308.0166931152344)), 
+ ('truck', 0.9539919495582581, (578.0675048828125, 126.9221420288086, 209.33059692382812, 96.07025146484375))
+ ] } 
+ \end{lstlisting}
