@@ -47,7 +47,7 @@ truck: 93%
 bicycle: 99%
 '''
 \end{lstlisting}
-Note that this Prediction was done on an older laptop CPU, therefor the long processing time. 
+Note that this prediction was done on an older laptop CPU, therefor the long processing time. 
 Prediction image is now in "darknet/predictions.png".
 
 \subsection{Darknet with Python}
@@ -55,9 +55,9 @@ Since running a script make no practical use, is it important to be able to run 
 
 Natively, this is written in C, so a program in C / C++ have the best efficiency rate. However is it neat to be able to use it in Python. In the repo who was cloned when installing Darknet, was there an almost finished Python example, and also a porting to be able to use the Darknet library, who is written in C. The "C to python" porting was to be found in "darknet/python/darknet.py".
 
-After some trail and error, the "darknet/examples/detector-scipy-opencv.py" was rewritten to work and can be seen in appendix A.
+After some trail and error, the "darknet/examples/detector-scipy-opencv.py" was rewritten to work and can be seen in appendix A. In order for the python detector to work, OpenCV for Python2.7 has to be installed.
 
-After running the python example, the output will be a matrix in this form:
+After running the python example, calculating object probability and bounding box position (BB), the output will be a matrix in this form:
  \[
  {[ (Object Name_1,P(object_1), (BB_1(X), BB_1(Y),BB_1(width),BB_1(height)),(Object Name_2, ... )  )]}
  \]
